@@ -1,0 +1,11 @@
+a {
+  text-decoration: none;
+}
+
+.banner {
+  background: url("../img/hacker_style.jpg");
+  background-position: center center;
+  background-size: cover;
+  height: 250px;
+}
+/*# sourceMappingURL=all.css.map */
