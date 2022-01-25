@@ -4,6 +4,9 @@ import {
 const baseUrl = 'https://vue3-course-api.hexschool.io';
 const apiPath = "sihle";
 
+let productModal = null;
+let delProductModal = null;
+
 const app = createApp({
   data() {
     return {
@@ -39,20 +42,26 @@ const app = createApp({
           console.log(err.response);
         })
     },
-    delete_product(e) {
-      const id = e.target.dataset.id;
-      axios.delete(`${ baseUrl }/v2/api/${ apiPath }/admin/product/${ id }`)
-        .then(res => {
-          delete this.products[id];
-          this.temp = {};
-        })
-        .catch(err => {
-          console.log(err.response);
-        })
+    open_modal(status) {
+      console.log('茲麻開門');
+      if (status === "add") {
+        productModal.show();
+      } else if (status === "edit") {
+        productModal.show();
+      } else if (status === "delete") {
+        delProductModal.show();
+      }
     }
-
   },
   mounted() {
+    // 新增、編輯 Modal
+    productModal = new bootstrap.Modal(document.getElementById('productModal'), {
+      keyboard: false
+    })
+    // 刪除 Modal
+    delProductModal = new bootstrap.Modal(document.getElementById('delProductModal'), {
+      keyboard: false
+    })
     this.check_login_status()
   },
 });
