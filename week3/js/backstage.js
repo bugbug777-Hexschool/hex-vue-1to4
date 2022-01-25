@@ -50,13 +50,16 @@ const app = createApp({
       .then(res => {
         console.log(res);
         alert(`已成功刪除 ${this.temp.title}！`);
+        
+        // 清除不需要的資料
         delete this.products[this.temp.id];
+        this.temp = {};
       })
       .catch(err => {
         alert("不是這樣搞的吧！？")
         console.log(err.response);
       })
-      
+
       delProductModal.hide();
     }
   },
