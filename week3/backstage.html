@@ -57,7 +57,7 @@
                 <button @click="open_modal('edit')" type="button" class="btn btn-outline-primary btn-sm">
                   編輯
                 </button>
-                <button @click="open_modal('delete')" type="button" class="btn btn-outline-danger btn-sm">
+                <button @click="open_modal('delete', product)" type="button" class="btn btn-outline-danger btn-sm">
                   刪除
                 </button>
               </div>
@@ -171,13 +171,13 @@
           </div>
           <div class="modal-body">
             是否刪除
-            <strong class="text-danger"></strong> 商品(刪除後將無法恢復)。
+            <strong class="text-danger">{{ temp.title }}</strong> 商品(刪除後將無法恢復)。
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
               取消
             </button>
-            <button type="button" class="btn btn-danger">
+            <button @click="delete_product" type="button" class="btn btn-danger">
               確認刪除
             </button>
           </div>
