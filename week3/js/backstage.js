@@ -15,7 +15,7 @@ const app = createApp({
         imagesUrl: [],
       },
       status: "",
-      imgUrl: ""
+      imageUrl: ""
     }
   },
   methods: {
@@ -52,9 +52,10 @@ const app = createApp({
       }
     },
     add_product() {
-      axios.post(`${ baseUrl }/v2/api/${ apiPath }/admin/product`, {data: this.temp})
+      axios.post(`${ baseUrl }/v2/api/${ apiPath }/admin/product`, {
+          data: this.temp
+        })
         .then(res => {
-          console.log(res);
           // 清除資料
           this.temp = {
             imagesUrl: []
@@ -90,10 +91,10 @@ const app = createApp({
     add_image() {
       // 將第一個加入的圖片設定成主要圖片
       if (!this.temp.imageUrl) {
-        this.temp.imageUrl = this.imgUrl
+        this.temp.imageUrl = this.imageUrl
       }
-      this.temp.imagesUrl.push(this.imgUrl);
-      this.imgUrl = "";
+      this.temp.imagesUrl.push(this.imageUrl);
+      this.imageUrl = "";
     }
   },
   mounted() {

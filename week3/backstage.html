@@ -84,13 +84,12 @@
                 <div class="mb-3">
                   <!-- 輸入列以及按鈕同列 -->
                   <div class="input-group mb-3">
-                    <input v-model="imgUrl" type="text" class="form-control" placeholder="請輸入圖片連結">
+                    <input v-model="imageUrl" type="text" class="form-control" placeholder="請輸入圖片連結">
                     <button @click="add_image" type="button" class="btn btn-outline-primary">
                       新增圖片
                     </button>
                   </div>
                   <!-- 圖片陣列 -->
-                  {{ Array.isArray(temp.imagesUrl) }}
                   <div class="d-flex justify-content-between flex-wrap">
                     <template v-for="(imageUrl, key) in temp.imagesUrl" :key="key">
                       <img :src="imageUrl" alt="" class="mb-3" style="width: 48%">
