@@ -11,7 +11,11 @@ const app = createApp({
   data() {
     return {
       products: {},
-      temp: {}
+      temp: {
+        imagesUrl: [],
+      },
+      status: "",
+      imgUrl: ""
     }
   },
   methods: {
@@ -37,30 +41,59 @@ const app = createApp({
     open_modal(status, product) {
       console.log('茲麻開門');
       if (status === "add") {
+        this.status = status; // this.status == 'add'
         productModal.show();
       } else if (status === "edit") {
+        this.status = status; // this.status == 'edit'
         productModal.show();
       } else if (status === "delete") {
         this.temp = product;
         delProductModal.show();
       }
     },
+    add_product() {
+      axios.post(`${ baseUrl }/v2/api/${ apiPath }/admin/product`, {data: this.temp})
+        .then(res => {
+          console.log(res);
+          // 清除資料
+          this.temp = {
+            imagesUrl: []
+          }
+          this.get_all_products();
+          productModal.hide();
+        })
+        .catch(err => {
+          console.dir(err);
+        })
+
+    },
+    edit_product() {
+      console.log('Modified a product!!');
+    },
     delete_product() {
       axios.delete(`${baseUrl}/v2/api/${apiPath}/admin/product/${this.temp.id}`)
-      .then(res => {
-        console.log(res);
-        alert(`已成功刪除 ${this.temp.title}！`);
-        
-        // 清除不需要的資料
-        delete this.products[this.temp.id];
-        this.temp = {};
-      })
-      .catch(err => {
-        alert("不是這樣搞的吧！？")
-        console.log(err.response);
-      })
+        .then(res => {
+          console.log(res);
+          alert(`已成功刪除 ${this.temp.title}！`);
+
+          // 清除不需要的資料
+          delete this.products[this.temp.id];
+          this.temp = {};
+        })
+        .catch(err => {
+          alert("不是這樣搞的吧！？")
+          console.log(err.response);
+        })
 
       delProductModal.hide();
+    },
+    add_image() {
+      // 將第一個加入的圖片設定成主要圖片
+      if (!this.temp.imageUrl) {
+        this.temp.imageUrl = this.imgUrl
+      }
+      this.temp.imagesUrl.push(this.imgUrl);
+      this.imgUrl = "";
     }
   },
   mounted() {
