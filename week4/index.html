@@ -26,6 +26,7 @@
           建立新的產品
         </button>
       </div>
+      <!-- Products -->
       <table class="table mt-4">
         <thead>
           <tr>
@@ -70,8 +71,11 @@
           </tr>
         </tbody>
       </table>
+      <!-- Pagination -->
+      <pagination :pagination="pagination"></pagination>
     </div>
     <!-- Modal -->
+    <!-- Add Modal, Edit Modal -->
     <div id="productModal" ref="productModal" class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-xl">
@@ -177,6 +181,7 @@
         </div>
       </div>
     </div>
+    <!-- Delete Modal -->
     <div id="delProductModal" ref="delProductModal" class="modal fade" tabindex="-1"
       aria-labelledby="delProductModalLabel" aria-hidden="true">
       <div class="modal-dialog">
