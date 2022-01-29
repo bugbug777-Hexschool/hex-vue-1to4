@@ -1,28 +1,14 @@
 import {
   createApp
 } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.29/vue.esm-browser.min.js"
+// Components
+import pagination from "./component-pagination.js";
 
-const baseUrl = "https://vue3-course-api.hexschool.io"
-const apiPath = "sihle"
+const baseUrl = "https://vue3-course-api.hexschool.io";
+const apiPath = "sihle";
 
 let productModal = null;
 let delProductModal = null;
-
-// Components
-const pagination = {
-  props: ['pagination'],
-  template: `<nav aria-label="Page navigation">
-  <ul class="pagination">
-    <li v-if="pagination.has_pre" class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <template v-for="i in pagination.total_pages">
-      <li class="page-item" :class="{active: (pagination.current_page === i)}">
-        <a class="page-link" href="#">{{ i }}</a>
-      </li>
-    </template>
-    <li v-if="pagination.has_next" class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>`
-}
 
 const app = createApp({
   data() {
